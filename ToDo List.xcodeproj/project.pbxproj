@@ -8,9 +8,18 @@
 
 /* Begin PBXBuildFile section */
 		FF9D6F082CE97E900049940E /* Assembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9D6F072CE97E900049940E /* Assembler.swift */; };
+		FF9D6F0A2CE984DE0049940E /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9D6F092CE984DE0049940E /* BaseViewController.swift */; };
+		FF9D6F0C2CE9867C0049940E /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9D6F0B2CE9867C0049940E /* MainViewController.swift */; };
+		FF9D6F142CE98C610049940E /* MainPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9D6F132CE98C610049940E /* MainPresenter.swift */; };
+		FF9D6F162CE9957F0049940E /* UIColor-Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9D6F152CE9957F0049940E /* UIColor-Ext.swift */; };
+		FF9D6F182CE999D00049940E /* UIView-Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9D6F172CE999D00049940E /* UIView-Ext.swift */; };
+		FF9D6F1A2CE99A470049940E /* UILabel-Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9D6F192CE99A470049940E /* UILabel-Ext.swift */; };
+		FF9D6F1C2CE99A8B0049940E /* UITableViewCell-Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9D6F1B2CE99A8B0049940E /* UITableViewCell-Ext.swift */; };
+		FF9D6F1E2CE99AF60049940E /* UIStackView-Ext..swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9D6F1D2CE99AF60049940E /* UIStackView-Ext..swift */; };
+		FF9D6F202CE9A4A90049940E /* MainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9D6F1F2CE9A4A90049940E /* MainTableViewCell.swift */; };
+		FF9D6F242CE9AA210049940E /* SFProFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9D6F232CE9AA210049940E /* SFProFont.swift */; };
 		FFF176432CE8A58800824516 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF176422CE8A58800824516 /* AppDelegate.swift */; };
 		FFF176452CE8A58800824516 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF176442CE8A58800824516 /* SceneDelegate.swift */; };
-		FFF176472CE8A58800824516 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF176462CE8A58800824516 /* ViewController.swift */; };
 		FFF1764D2CE8A58800824516 /* ToDo_List.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FFF1764B2CE8A58800824516 /* ToDo_List.xcdatamodeld */; };
 		FFF1764F2CE8A58B00824516 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FFF1764E2CE8A58B00824516 /* Assets.xcassets */; };
 		FFF176522CE8A58B00824516 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = FFF176512CE8A58B00824516 /* Base */; };
@@ -38,10 +47,19 @@
 
 /* Begin PBXFileReference section */
 		FF9D6F072CE97E900049940E /* Assembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assembler.swift; sourceTree = "<group>"; };
+		FF9D6F092CE984DE0049940E /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		FF9D6F0B2CE9867C0049940E /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		FF9D6F132CE98C610049940E /* MainPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPresenter.swift; sourceTree = "<group>"; };
+		FF9D6F152CE9957F0049940E /* UIColor-Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor-Ext.swift"; sourceTree = "<group>"; };
+		FF9D6F172CE999D00049940E /* UIView-Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView-Ext.swift"; sourceTree = "<group>"; };
+		FF9D6F192CE99A470049940E /* UILabel-Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel-Ext.swift"; sourceTree = "<group>"; };
+		FF9D6F1B2CE99A8B0049940E /* UITableViewCell-Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell-Ext.swift"; sourceTree = "<group>"; };
+		FF9D6F1D2CE99AF60049940E /* UIStackView-Ext..swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView-Ext..swift"; sourceTree = "<group>"; };
+		FF9D6F1F2CE9A4A90049940E /* MainTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewCell.swift; sourceTree = "<group>"; };
+		FF9D6F232CE9AA210049940E /* SFProFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFProFont.swift; sourceTree = "<group>"; };
 		FFF1763F2CE8A58800824516 /* ToDo List.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ToDo List.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FFF176422CE8A58800824516 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FFF176442CE8A58800824516 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		FFF176462CE8A58800824516 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		FFF1764C2CE8A58800824516 /* ToDo_List.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ToDo_List.xcdatamodel; sourceTree = "<group>"; };
 		FFF1764E2CE8A58B00824516 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FFF176512CE8A58B00824516 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -108,6 +126,11 @@
 		FF9D6F002CE97C510049940E /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				FF9D6F152CE9957F0049940E /* UIColor-Ext.swift */,
+				FF9D6F172CE999D00049940E /* UIView-Ext.swift */,
+				FF9D6F192CE99A470049940E /* UILabel-Ext.swift */,
+				FF9D6F1B2CE99A8B0049940E /* UITableViewCell-Ext.swift */,
+				FF9D6F1D2CE99AF60049940E /* UIStackView-Ext..swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -122,6 +145,7 @@
 		FF9D6F022CE97C6D0049940E /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				FF9D6F232CE9AA210049940E /* SFProFont.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -129,7 +153,8 @@
 		FF9D6F032CE97C790049940E /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				FFF176462CE8A58800824516 /* ViewController.swift */,
+				FF9D6F0D2CE98BAE0049940E /* MainViewController  */,
+				FF9D6F112CE98C2A0049940E /* BaseViewController  */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -137,6 +162,7 @@
 		FF9D6F042CE97C870049940E /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				FF9D6F1F2CE9A4A90049940E /* MainTableViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -154,6 +180,55 @@
 				FF9D6F072CE97E900049940E /* Assembler.swift */,
 			);
 			path = Assembler;
+			sourceTree = "<group>";
+		};
+		FF9D6F0D2CE98BAE0049940E /* MainViewController  */ = {
+			isa = PBXGroup;
+			children = (
+				FF9D6F102CE98C1D0049940E /* Model */,
+				FF9D6F0F2CE98C150049940E /* Presenter */,
+				FF9D6F0E2CE98C0F0049940E /* View */,
+			);
+			path = "MainViewController ";
+			sourceTree = "<group>";
+		};
+		FF9D6F0E2CE98C0F0049940E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				FF9D6F0B2CE9867C0049940E /* MainViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		FF9D6F0F2CE98C150049940E /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				FF9D6F132CE98C610049940E /* MainPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		FF9D6F102CE98C1D0049940E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		FF9D6F112CE98C2A0049940E /* BaseViewController  */ = {
+			isa = PBXGroup;
+			children = (
+				FF9D6F122CE98C340049940E /* View */,
+			);
+			path = "BaseViewController ";
+			sourceTree = "<group>";
+		};
+		FF9D6F122CE98C340049940E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				FF9D6F092CE984DE0049940E /* BaseViewController.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		FFF176362CE8A58800824516 = {
@@ -340,11 +415,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FFF176472CE8A58800824516 /* ViewController.swift in Sources */,
+				FF9D6F202CE9A4A90049940E /* MainTableViewCell.swift in Sources */,
+				FF9D6F242CE9AA210049940E /* SFProFont.swift in Sources */,
+				FF9D6F0C2CE9867C0049940E /* MainViewController.swift in Sources */,
+				FF9D6F1C2CE99A8B0049940E /* UITableViewCell-Ext.swift in Sources */,
 				FFF176432CE8A58800824516 /* AppDelegate.swift in Sources */,
+				FF9D6F1A2CE99A470049940E /* UILabel-Ext.swift in Sources */,
 				FF9D6F082CE97E900049940E /* Assembler.swift in Sources */,
 				FFF176452CE8A58800824516 /* SceneDelegate.swift in Sources */,
 				FFF1764D2CE8A58800824516 /* ToDo_List.xcdatamodeld in Sources */,
+				FF9D6F142CE98C610049940E /* MainPresenter.swift in Sources */,
+				FF9D6F1E2CE99AF60049940E /* UIStackView-Ext..swift in Sources */,
+				FF9D6F182CE999D00049940E /* UIView-Ext.swift in Sources */,
+				FF9D6F0A2CE984DE0049940E /* BaseViewController.swift in Sources */,
+				FF9D6F162CE9957F0049940E /* UIColor-Ext.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
