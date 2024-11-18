@@ -22,6 +22,12 @@ final class MainViewController: BaseViewController {
     }()
     private let addButton = UIButton()
     private let label = UILabel(text: "one note", textColor: .custom.white, font: UIFont(name: SFProFont.regular.font, size: 11), textAlignment: .left, numberOfLines: 0)
+    private let baseViewForEditNote: UIVisualEffectView = {
+        let blurEffect = UIBlurEffect(style: .systemUltraThinMaterialDark)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        return blurEffectView
+    }()
+    private let editNote = EditNote()
     
     init(presenter: MainPresenter) {
         self.presenter = presenter
@@ -56,9 +62,14 @@ final class MainViewController: BaseViewController {
         searchController.searchBar.delegate = self
         searchController.searchBar.placeholder = "Search"
         searchController.searchBar.searchTextField.backgroundColor = .custom.gray
-        searchController.searchBar.tintColor = .custom.white
+        searchController.searchBar.searchTextField.textColor = .custom.white
         let attributes = [NSAttributedString.Key.foregroundColor: UIColor.custom.white.withAlphaComponent(0.5)]
         searchController.searchBar.searchTextField.attributedPlaceholder = NSAttributedString(string: "Search", attributes: attributes)
+        if let searchTextField = searchController.searchBar.value(forKey: "searchTextField") as? UITextField {
+            if let leftView = searchTextField.leftView as? UIImageView {
+                leftView.tintColor = .custom.white.withAlphaComponent(0.5)
+            }
+        }
         searchController.searchBar.addSubviews(buttonVoice)
     }
     
@@ -70,13 +81,24 @@ final class MainViewController: BaseViewController {
         addButton.setImage(UIImage(systemName: "square.and.pencil", withConfiguration: UIImage.SymbolConfiguration(pointSize: 28)), for: .normal)
         addButton.tintColor = .custom.main
         addButton.addTarget(self, action: #selector(addNote(_:)), for: .touchUpInside)
+        
+        editNote.addTargetEdit(self, action: #selector(editNoteButton(_:)), for: .touchUpInside)
+        editNote.addTargetShared(self, action: #selector(sharedNote(_:)), for: .touchUpInside)
+        editNote.addTargetDelete(self, action: #selector(deleteNote(_:)), for: .touchUpInside)
     }
     
     private func setupView() {
         let footerView = UIView()
         footerView.backgroundColor = .custom.gray
-        view.addSubviews(tableView, footerView, label, addButton)
+        view.addSubviews(tableView, footerView, baseViewForEditNote)
+        footerView.addSubviews(label, addButton)
         footerView.bringSubviewToFront(view)
+        
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(backStartController(_:)))
+        baseViewForEditNote.addGestureRecognizer(gesture)
+        
+        baseViewForEditNote.contentView.addSubviews(editNote)
+        baseViewForEditNote.isHidden = true
         
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
@@ -87,20 +109,28 @@ final class MainViewController: BaseViewController {
             footerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             footerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             footerView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            footerView.heightAnchor.constraint(equalToConstant: 103), //??????
+            footerView.heightAnchor.constraint(equalToConstant: 83), //??????
             
-            label.topAnchor.constraint(equalTo: footerView.topAnchor, constant: 20.5),
-            label.leadingAnchor.constraint(equalTo: footerView.leadingAnchor, constant: 20),
-            label.bottomAnchor.constraint(equalTo: footerView.bottomAnchor, constant: -20),
+            label.centerYAnchor.constraint(equalTo: footerView.centerYAnchor, constant: -10),
+            label.centerXAnchor.constraint(equalTo: footerView.centerXAnchor),
             
             addButton.topAnchor.constraint(equalTo: footerView.topAnchor, constant: 13),
             addButton.leadingAnchor.constraint(greaterThanOrEqualTo: label.trailingAnchor, constant: 20),
             addButton.trailingAnchor.constraint(equalTo: footerView.trailingAnchor, constant: -22),
-            addButton.bottomAnchor.constraint(equalTo: footerView.bottomAnchor, constant: -20),
+            addButton.bottomAnchor.constraint(equalTo: footerView.bottomAnchor, constant: -36),
             
             buttonVoice.topAnchor.constraint(equalTo: searchController.searchBar.topAnchor, constant: 7),
             buttonVoice.trailingAnchor.constraint(equalTo: searchController.searchBar.trailingAnchor, constant: -23),
-            buttonVoice.bottomAnchor.constraint(equalTo: searchController.searchBar.bottomAnchor, constant: -23)
+            buttonVoice.bottomAnchor.constraint(equalTo: searchController.searchBar.bottomAnchor, constant: -23),
+            
+            baseViewForEditNote.topAnchor.constraint(equalTo: view.topAnchor),
+            baseViewForEditNote.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            baseViewForEditNote.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            baseViewForEditNote.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            
+            editNote.leadingAnchor.constraint(equalTo: baseViewForEditNote.leadingAnchor, constant: 20),
+            editNote.trailingAnchor.constraint(equalTo: baseViewForEditNote.trailingAnchor, constant: -20),
+            editNote.centerYAnchor.constraint(equalTo: baseViewForEditNote.contentView.centerYAnchor, constant: 100)
             
         ])
     }
@@ -112,6 +142,24 @@ final class MainViewController: BaseViewController {
     @objc private func addNote(_ sender: UIButton) {
         
     }
+    
+    @objc private func backStartController(_ gesture: UIGestureRecognizer) {
+        baseViewForEditNote.isHidden = true
+        navigationController?.setNavigationBarHidden(false, animated: false)
+    }
+    
+    @objc private func startEditingNote(_ gesture: UILongPressGestureRecognizer) {
+//        guard let tag = gesture.view?.tag else { return }
+//        setupSelectCell(tag)
+        navigationController?.setNavigationBarHidden(true, animated: false)
+        baseViewForEditNote.isHidden = false
+    }
+    
+    @objc private func editNoteButton(_: Any) {}
+
+    @objc private func sharedNote(_: Any) {}
+    
+    @objc private func deleteNote(_: Any) {}
 }
 
 extension MainViewController: UITableViewDataSource, UITableViewDelegate {
@@ -121,7 +169,9 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: MainTableViewCell.identifier, for: indexPath) as? MainTableViewCell else { return UITableViewCell() }
-        return cell 
+        cell.selectionStyle = .none
+        cell.addLongGesture(target: self, action: #selector(startEditingNote(_:)))
+        return cell
     }
 }
 

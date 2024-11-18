@@ -9,9 +9,9 @@ import UIKit
 
 final class MainTableViewCell: UITableViewCell {
     private let checkmarkButton = UIButton()
-    private let nameNoteLabel = UILabel(text: "hello", textColor: .custom.white, font: UIFont(name: SFProFont.medium.font, size: 16), textAlignment: .left, numberOfLines: 0)
-    private let miniNoteLabel = UILabel(text: "sjdkcsbbskbcsbcshbchkb", textColor: .custom.white, font: UIFont(name: SFProFont.bold.font, size: 12), textAlignment: .left, numberOfLines: 0)
-    private let dateLabel = UILabel(text: "22/06/23", textColor: .custom.white, font: UIFont(name: SFProFont.regular.font, size: 12), textAlignment: .left, numberOfLines: 0)
+    private let nameNoteLabel = UILabel(text: "hello", font: UIFont(name: SFProFont.medium.font, size: 16), textAlignment: .left, numberOfLines: 0)
+    private let miniNoteLabel = UILabel(text: "sjdkcsbbskbcsbcshbchkb", font: UIFont(name: SFProFont.bold.font, size: 12), textAlignment: .left, numberOfLines: 0)
+    private let dateLabel = UILabel(text: "22/06/23", textColor: .custom.grayLighter, font: UIFont(name: SFProFont.regular.font, size: 12), textAlignment: .left, numberOfLines: 0)
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -39,6 +39,9 @@ final class MainTableViewCell: UITableViewCell {
         baseView.fullConstraint()
         baseView.addSubviews(generalStackView, lineView)
         
+        let gesture = UILongPressGestureRecognizer()
+        addGestureRecognizer(gesture)
+        
         NSLayoutConstraint.activate([
             generalStackView.topAnchor.constraint(equalTo: baseView.topAnchor, constant: 12),
             generalStackView.leadingAnchor.constraint(equalTo: baseView.leadingAnchor, constant: 20),
@@ -61,10 +64,30 @@ final class MainTableViewCell: UITableViewCell {
         let imageForButton = checkmarkButton.isSelected ? "checkmark.circle" : "circle"
         checkmarkButton.setImage(UIImage(systemName: imageForButton, withConfiguration: UIImage.SymbolConfiguration(pointSize: 24)), for: .normal)
         checkmarkButton.tintColor = checkmarkButton.isSelected ? UIColor.custom.main : UIColor.custom.grayLighter
+        updateNameNoteLabelText()
+    }
+    
+    private func updateNameNoteLabelText() {
+        nameNoteLabel.textColor = checkmarkButton.isSelected ? UIColor.custom.grayLighter : UIColor.custom.white
+        miniNoteLabel.textColor = checkmarkButton.isSelected ? UIColor.custom.grayLighter : UIColor.custom.white
+        if checkmarkButton.isSelected {
+            let attributeString: NSMutableAttributedString = NSMutableAttributedString(string: nameNoteLabel.text ?? "")
+            attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: NSUnderlineStyle.single.rawValue, range: NSRange(location: 0, length: attributeString.length))
+            nameNoteLabel.attributedText = attributeString
+        } else {
+            nameNoteLabel.attributedText = NSAttributedString(string: nameNoteLabel.text ?? "")
+        }
     }
     
     @objc private func changeButton(_ sender: UIButton) {
         checkmarkButton.isSelected.toggle()
         updateButtonImage()
+    }
+}
+
+extension MainTableViewCell {
+    func addLongGesture(target: Any, action: Selector) {
+        guard let array = gestureRecognizers, let gesture = array.first else { return }
+        gesture.addTarget(target, action: action)
     }
 }
