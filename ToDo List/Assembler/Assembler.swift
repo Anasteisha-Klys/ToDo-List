@@ -17,4 +17,11 @@ final class Assembler {
         presenter.delegate = vc 
         return vc
     }
+    
+    func setupEditViewController(delegate: EditViewControllerDelegate, edit: Note? = nil) -> EditViewController {
+        let presenter = EditPresenter(edit: edit)
+        let vc = EditViewController(presenter: presenter, delegate: delegate)
+        presenter.delegate = vc
+        return vc 
+    }
 }

@@ -48,8 +48,8 @@ final class CustomButton: UIView {
         ])
     }
 
-    func addTarget(_ target: Any?, action: Selector, for controlEvents: UIControl.Event) {
-        button.addTarget(target, action: action, for: controlEvents)
+    func addTarget(_ target: Any?, action: Selector) {
+        button.addTarget(target, action: action, for: .touchUpInside)
     }
 
     func setupTextLabel(dateText: String, font: UIFont? = nil, textColor: UIColor? = nil) {

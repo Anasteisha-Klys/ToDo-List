@@ -20,6 +20,21 @@
 		FF9D6F242CE9AA210049940E /* SFProFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9D6F232CE9AA210049940E /* SFProFont.swift */; };
 		FF9D6F262CEA0D1B0049940E /* EditNote.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9D6F252CEA0D1B0049940E /* EditNote.swift */; };
 		FF9D6F282CEAD73A0049940E /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9D6F272CEAD73A0049940E /* CustomButton.swift */; };
+		FF9D6F2E2CEAF23F0049940E /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9D6F2D2CEAF23F0049940E /* EditViewController.swift */; };
+		FF9D6F302CEAF2BA0049940E /* EditPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9D6F2F2CEAF2BA0049940E /* EditPresenter.swift */; };
+		FF9D6F342CEBD1820049940E /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9D6F332CEBD1820049940E /* Note.swift */; };
+		FF9D6F362CEC79220049940E /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9D6F352CEC79220049940E /* Network.swift */; };
+		FF9D6F382CEC79530049940E /* NetworkProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9D6F372CEC79530049940E /* NetworkProtocol.swift */; };
+		FF9D6F3A2CEC79960049940E /* Method.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9D6F392CEC79960049940E /* Method.swift */; };
+		FF9D6F3C2CEC79E40049940E /* NetworkRequestProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9D6F3B2CEC79E40049940E /* NetworkRequestProtocol.swift */; };
+		FF9D6F3E2CEC7A290049940E /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9D6F3D2CEC7A290049940E /* Api.swift */; };
+		FF9D6F412CEC7C2E0049940E /* Results.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9D6F402CEC7C2E0049940E /* Results.swift */; };
+		FF9D6F432CEC7C760049940E /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9D6F422CEC7C760049940E /* NetworkError.swift */; };
+		FF9D6F452CEC7E580049940E /* Todos-Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9D6F442CEC7E580049940E /* Todos-Network.swift */; };
+		FF9D6F472CEC842F0049940E /* TodosData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9D6F462CEC842F0049940E /* TodosData.swift */; };
+		FF9D6F492CEC86FD0049940E /* StorageMenager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9D6F482CEC86FD0049940E /* StorageMenager.swift */; };
+		FF9D6F4E2CEDA10D0049940E /* CustomCreateNoteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9D6F4D2CEDA10D0049940E /* CustomCreateNoteButton.swift */; };
+		FF9D6F542CEE36C40049940E /* Note-Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9D6F532CEE36C40049940E /* Note-Ext.swift */; };
 		FFF176432CE8A58800824516 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF176422CE8A58800824516 /* AppDelegate.swift */; };
 		FFF176452CE8A58800824516 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF176442CE8A58800824516 /* SceneDelegate.swift */; };
 		FFF1764D2CE8A58800824516 /* ToDo_List.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FFF1764B2CE8A58800824516 /* ToDo_List.xcdatamodeld */; };
@@ -61,6 +76,21 @@
 		FF9D6F232CE9AA210049940E /* SFProFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFProFont.swift; sourceTree = "<group>"; };
 		FF9D6F252CEA0D1B0049940E /* EditNote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditNote.swift; sourceTree = "<group>"; };
 		FF9D6F272CEAD73A0049940E /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
+		FF9D6F2D2CEAF23F0049940E /* EditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
+		FF9D6F2F2CEAF2BA0049940E /* EditPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPresenter.swift; sourceTree = "<group>"; };
+		FF9D6F332CEBD1820049940E /* Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
+		FF9D6F352CEC79220049940E /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
+		FF9D6F372CEC79530049940E /* NetworkProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkProtocol.swift; sourceTree = "<group>"; };
+		FF9D6F392CEC79960049940E /* Method.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Method.swift; sourceTree = "<group>"; };
+		FF9D6F3B2CEC79E40049940E /* NetworkRequestProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequestProtocol.swift; sourceTree = "<group>"; };
+		FF9D6F3D2CEC7A290049940E /* Api.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Api.swift; sourceTree = "<group>"; };
+		FF9D6F402CEC7C2E0049940E /* Results.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Results.swift; sourceTree = "<group>"; };
+		FF9D6F422CEC7C760049940E /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		FF9D6F442CEC7E580049940E /* Todos-Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Todos-Network.swift"; sourceTree = "<group>"; };
+		FF9D6F462CEC842F0049940E /* TodosData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodosData.swift; sourceTree = "<group>"; };
+		FF9D6F482CEC86FD0049940E /* StorageMenager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageMenager.swift; sourceTree = "<group>"; };
+		FF9D6F4D2CEDA10D0049940E /* CustomCreateNoteButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCreateNoteButton.swift; sourceTree = "<group>"; };
+		FF9D6F532CEE36C40049940E /* Note-Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Note-Ext.swift"; sourceTree = "<group>"; };
 		FFF1763F2CE8A58800824516 /* ToDo List.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ToDo List.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FFF176422CE8A58800824516 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FFF176442CE8A58800824516 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -122,7 +152,6 @@
 			children = (
 				FFF1764E2CE8A58B00824516 /* Assets.xcassets */,
 				FFF176532CE8A58B00824516 /* Info.plist */,
-				FFF1764B2CE8A58800824516 /* ToDo_List.xcdatamodeld */,
 			);
 			path = Support;
 			sourceTree = "<group>";
@@ -142,6 +171,8 @@
 		FF9D6F012CE97C610049940E /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				FF9D6F3F2CEC7BB00049940E /* Setup */,
+				FF9D6F442CEC7E580049940E /* Todos-Network.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -149,7 +180,12 @@
 		FF9D6F022CE97C6D0049940E /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				FF9D6F272CEAD73A0049940E /* CustomButton.swift */,
 				FF9D6F232CE9AA210049940E /* SFProFont.swift */,
+				FF9D6F332CEBD1820049940E /* Note.swift */,
+				FF9D6F402CEC7C2E0049940E /* Results.swift */,
+				FF9D6F462CEC842F0049940E /* TodosData.swift */,
+				FF9D6F532CEE36C40049940E /* Note-Ext.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -157,6 +193,7 @@
 		FF9D6F032CE97C790049940E /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				FF9D6F292CEAF2050049940E /* EditViewController */,
 				FF9D6F0D2CE98BAE0049940E /* MainViewController  */,
 				FF9D6F112CE98C2A0049940E /* BaseViewController  */,
 			);
@@ -174,6 +211,8 @@
 		FF9D6F052CE97C940049940E /* DataBase */ = {
 			isa = PBXGroup;
 			children = (
+				FF9D6F482CEC86FD0049940E /* StorageMenager.swift */,
+				FFF1764B2CE8A58800824516 /* ToDo_List.xcdatamodeld */,
 			);
 			path = DataBase;
 			sourceTree = "<group>";
@@ -216,7 +255,7 @@
 			isa = PBXGroup;
 			children = (
 				FF9D6F252CEA0D1B0049940E /* EditNote.swift */,
-				FF9D6F272CEAD73A0049940E /* CustomButton.swift */,
+				FF9D6F4D2CEDA10D0049940E /* CustomCreateNoteButton.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -235,6 +274,52 @@
 				FF9D6F092CE984DE0049940E /* BaseViewController.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		FF9D6F292CEAF2050049940E /* EditViewController */ = {
+			isa = PBXGroup;
+			children = (
+				FF9D6F2C2CEAF2210049940E /* Model */,
+				FF9D6F2B2CEAF2190049940E /* Presenter */,
+				FF9D6F2A2CEAF2130049940E /* View */,
+			);
+			path = EditViewController;
+			sourceTree = "<group>";
+		};
+		FF9D6F2A2CEAF2130049940E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				FF9D6F2D2CEAF23F0049940E /* EditViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		FF9D6F2B2CEAF2190049940E /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				FF9D6F2F2CEAF2BA0049940E /* EditPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		FF9D6F2C2CEAF2210049940E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		FF9D6F3F2CEC7BB00049940E /* Setup */ = {
+			isa = PBXGroup;
+			children = (
+				FF9D6F352CEC79220049940E /* Network.swift */,
+				FF9D6F372CEC79530049940E /* NetworkProtocol.swift */,
+				FF9D6F3B2CEC79E40049940E /* NetworkRequestProtocol.swift */,
+				FF9D6F422CEC7C760049940E /* NetworkError.swift */,
+				FF9D6F392CEC79960049940E /* Method.swift */,
+				FF9D6F3D2CEC7A290049940E /* Api.swift */,
+			);
+			path = Setup;
 			sourceTree = "<group>";
 		};
 		FFF176362CE8A58800824516 = {
@@ -422,21 +507,36 @@
 			buildActionMask = 2147483647;
 			files = (
 				FF9D6F202CE9A4A90049940E /* MainTableViewCell.swift in Sources */,
+				FF9D6F542CEE36C40049940E /* Note-Ext.swift in Sources */,
 				FF9D6F242CE9AA210049940E /* SFProFont.swift in Sources */,
+				FF9D6F302CEAF2BA0049940E /* EditPresenter.swift in Sources */,
 				FF9D6F0C2CE9867C0049940E /* MainViewController.swift in Sources */,
 				FF9D6F262CEA0D1B0049940E /* EditNote.swift in Sources */,
 				FF9D6F282CEAD73A0049940E /* CustomButton.swift in Sources */,
+				FF9D6F3E2CEC7A290049940E /* Api.swift in Sources */,
 				FF9D6F1C2CE99A8B0049940E /* UITableViewCell-Ext.swift in Sources */,
 				FFF176432CE8A58800824516 /* AppDelegate.swift in Sources */,
+				FF9D6F2E2CEAF23F0049940E /* EditViewController.swift in Sources */,
 				FF9D6F1A2CE99A470049940E /* UILabel-Ext.swift in Sources */,
+				FF9D6F3A2CEC79960049940E /* Method.swift in Sources */,
+				FF9D6F362CEC79220049940E /* Network.swift in Sources */,
 				FF9D6F082CE97E900049940E /* Assembler.swift in Sources */,
+				FF9D6F492CEC86FD0049940E /* StorageMenager.swift in Sources */,
 				FFF176452CE8A58800824516 /* SceneDelegate.swift in Sources */,
 				FFF1764D2CE8A58800824516 /* ToDo_List.xcdatamodeld in Sources */,
+				FF9D6F452CEC7E580049940E /* Todos-Network.swift in Sources */,
+				FF9D6F472CEC842F0049940E /* TodosData.swift in Sources */,
 				FF9D6F142CE98C610049940E /* MainPresenter.swift in Sources */,
+				FF9D6F4E2CEDA10D0049940E /* CustomCreateNoteButton.swift in Sources */,
+				FF9D6F342CEBD1820049940E /* Note.swift in Sources */,
 				FF9D6F1E2CE99AF60049940E /* UIStackView-Ext..swift in Sources */,
+				FF9D6F382CEC79530049940E /* NetworkProtocol.swift in Sources */,
+				FF9D6F3C2CEC79E40049940E /* NetworkRequestProtocol.swift in Sources */,
 				FF9D6F182CE999D00049940E /* UIView-Ext.swift in Sources */,
 				FF9D6F0A2CE984DE0049940E /* BaseViewController.swift in Sources */,
+				FF9D6F432CEC7C760049940E /* NetworkError.swift in Sources */,
 				FF9D6F162CE9957F0049940E /* UIColor-Ext.swift in Sources */,
+				FF9D6F412CEC7C2E0049940E /* Results.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -779,7 +879,8 @@
 				FFF1764C2CE8A58800824516 /* ToDo_List.xcdatamodel */,
 			);
 			currentVersion = FFF1764C2CE8A58800824516 /* ToDo_List.xcdatamodel */;
-			path = ToDo_List.xcdatamodeld;
+			name = ToDo_List.xcdatamodeld;
+			path = ../Support/ToDo_List.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

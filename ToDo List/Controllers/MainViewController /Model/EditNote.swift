@@ -8,9 +8,9 @@
 import UIKit
 
 final class EditNote: UIView {
-    private let nameNoteLabel = UILabel(text: "hello", textColor: .custom.white, font: UIFont(name: SFProFont.medium.font, size: 16), textAlignment: .left, numberOfLines: 0)
-    private let miniNoteLabel = UILabel(text: "sjdkcsbbskbcsbcshbchkb", textColor: .custom.white, font: UIFont(name: SFProFont.bold.font, size: 12), textAlignment: .left, numberOfLines: 0)
-    private let dateLabel = UILabel(text: "22/06/23", textColor: .custom.white, font: UIFont(name: SFProFont.regular.font, size: 12), textAlignment: .left, numberOfLines: 0)
+    private let nameNoteLabel = UILabel(text: nil, textColor: .custom.white, font: UIFont(name: SFProFont.medium.font, size: 16), textAlignment: .left, numberOfLines: 0)
+    private let miniNoteLabel = UILabel(text: nil, textColor: .custom.white, font: UIFont(name: SFProFont.bold.font, size: 12), textAlignment: .left, numberOfLines: 0)
+    private let dateLabel = UILabel(text: nil, textColor: .custom.white, font: UIFont(name: SFProFont.regular.font, size: 12), textAlignment: .left, numberOfLines: 0)
     private let editNoteButton = CustomButton()
     private let sharedButton = CustomButton()
     private let deleteButton = CustomButton()
@@ -56,7 +56,7 @@ final class EditNote: UIView {
             stackViewNote.topAnchor.constraint(equalTo: baseViewForGeneral.topAnchor, constant: 12),
             stackViewNote.leadingAnchor.constraint(equalTo: baseViewForGeneral.leadingAnchor, constant: 16),
             stackViewNote.trailingAnchor.constraint(equalTo: baseViewForGeneral.trailingAnchor, constant: -16),
-            stackViewNote.bottomAnchor.constraint(equalTo: baseViewForGeneral.bottomAnchor, constant: -12)
+            stackViewNote.bottomAnchor.constraint(equalTo: baseViewForGeneral.bottomAnchor, constant: -12),
         ])
     }
     
@@ -71,21 +71,19 @@ final class EditNote: UIView {
         deleteButton.setupImageOnButton(image: "trash")
     }
     
-    func addTargetEdit(_ target: Any?, action: Selector, for controlEvents: UIControl.Event) {
-        editNoteButton.addTarget(target, action: action, for: controlEvents)
-        let gesture = UITapGestureRecognizer(target: target, action: action)
-        editNoteButton.addGestureRecognizer(gesture)
+    func setupNotes(note: Note) {
+        nameNoteLabel.text = note.title
     }
     
-    func addTargetShared(_ target: Any?, action: Selector, for controlEvents: UIControl.Event) {
-        sharedButton.addTarget(target, action: action, for: controlEvents)
-        let gesture = UITapGestureRecognizer(target: target, action: action)
-        sharedButton.addGestureRecognizer(gesture)
+    func addTargetEdit(target: Any?, action: Selector) {
+        editNoteButton.addTarget(target, action: action)
     }
-
-    func addTargetDelete(_ target: Any?, action: Selector, for controlEvents: UIControl.Event) {
-        deleteButton.addTarget(target, action: action, for: controlEvents)
-        let gesture = UITapGestureRecognizer(target: target, action: action)
-        deleteButton.addGestureRecognizer(gesture)
+    
+    func addTargetShared(target: Any?, action: Selector) {
+        sharedButton.addTarget(target, action: action)
+    }
+    
+    func addTargetDelete(target: Any?, action: Selector) {
+        deleteButton.addTarget(target, action: action)
     }
 }

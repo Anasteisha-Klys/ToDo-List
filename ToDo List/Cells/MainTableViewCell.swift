@@ -9,9 +9,9 @@ import UIKit
 
 final class MainTableViewCell: UITableViewCell {
     private let checkmarkButton = UIButton()
-    private let nameNoteLabel = UILabel(text: "hello", font: UIFont(name: SFProFont.medium.font, size: 16), textAlignment: .left, numberOfLines: 0)
-    private let miniNoteLabel = UILabel(text: "sjdkcsbbskbcsbcshbchkb", font: UIFont(name: SFProFont.bold.font, size: 12), textAlignment: .left, numberOfLines: 0)
-    private let dateLabel = UILabel(text: "22/06/23", textColor: .custom.grayLighter, font: UIFont(name: SFProFont.regular.font, size: 12), textAlignment: .left, numberOfLines: 0)
+    private let nameNoteLabel = UILabel(text: nil, font: UIFont(name: SFProFont.medium.font, size: 16), textAlignment: .left, numberOfLines: 0)
+    private let miniNoteLabel = UILabel(text: nil, font: UIFont(name: SFProFont.bold.font, size: 12), textAlignment: .left, numberOfLines: 0)
+    private let dateLabel = UILabel(text: nil, textColor: .custom.grayLighter, font: UIFont(name: SFProFont.regular.font, size: 12), textAlignment: .left, numberOfLines: 0)
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -32,22 +32,32 @@ final class MainTableViewCell: UITableViewCell {
         
         let stackViewNote = UIStackView(axis: .vertical, spacing: 6, alignment: .fill, distribution: .equalSpacing, arrangedSubviews: nameNoteLabel, miniNoteLabel, dateLabel)
         let stackViewButton = UIStackView(axis: .vertical, spacing: 10, alignment: .fill, distribution: .equalSpacing, arrangedSubviews: checkmarkButton, UIView(), UIView())
-        let generalStackView = UIStackView(axis: .horizontal, spacing: 8, alignment: .fill, distribution: .fillProportionally, arrangedSubviews: stackViewButton, stackViewNote)
+        let generalView = UIView()
+        generalView.addSubviews(stackViewButton, stackViewNote)
         
         let baseView = UIView()
         contentView.addSubviews(baseView)
         baseView.fullConstraint()
-        baseView.addSubviews(generalStackView, lineView)
+        baseView.addSubviews(generalView, lineView)
         
         let gesture = UILongPressGestureRecognizer()
         addGestureRecognizer(gesture)
         
         NSLayoutConstraint.activate([
-            generalStackView.topAnchor.constraint(equalTo: baseView.topAnchor, constant: 12),
-            generalStackView.leadingAnchor.constraint(equalTo: baseView.leadingAnchor, constant: 20),
-            generalStackView.trailingAnchor.constraint(equalTo: baseView.trailingAnchor, constant: -20),
+            stackViewButton.topAnchor.constraint(equalTo: generalView.topAnchor, constant: 12),
+            stackViewButton.leadingAnchor.constraint(equalTo: generalView.leadingAnchor, constant: 20),
+            stackViewButton.bottomAnchor.constraint(equalTo: generalView.bottomAnchor, constant: -12),
             
-            lineView.topAnchor.constraint(equalTo: generalStackView.bottomAnchor, constant: 12),
+            stackViewNote.topAnchor.constraint(equalTo: generalView.topAnchor, constant: 12),
+            stackViewNote.leadingAnchor.constraint(greaterThanOrEqualTo: stackViewButton.trailingAnchor, constant: 8),
+            stackViewNote.trailingAnchor.constraint(equalTo: generalView.trailingAnchor, constant: -20),
+            stackViewNote.bottomAnchor.constraint(equalTo: generalView.bottomAnchor, constant: -12),
+            
+            generalView.topAnchor.constraint(equalTo: baseView.topAnchor),
+            generalView.leadingAnchor.constraint(equalTo: baseView.leadingAnchor),
+            generalView.trailingAnchor.constraint(equalTo: baseView.trailingAnchor),
+            
+            lineView.topAnchor.constraint(equalTo: generalView.bottomAnchor),
             lineView.leadingAnchor.constraint(equalTo: baseView.leadingAnchor, constant: 20),
             lineView.trailingAnchor.constraint(equalTo: baseView.trailingAnchor, constant: -20),
             lineView.bottomAnchor.constraint(equalTo: baseView.bottomAnchor, constant: -2),
@@ -81,6 +91,12 @@ final class MainTableViewCell: UITableViewCell {
     
     @objc private func changeButton(_ sender: UIButton) {
         checkmarkButton.isSelected.toggle()
+        updateButtonImage()
+    }
+    
+    func setupCell(notes: Note) {
+        nameNoteLabel.text = notes.title
+        checkmarkButton.isSelected = notes.completed
         updateButtonImage()
     }
 }
