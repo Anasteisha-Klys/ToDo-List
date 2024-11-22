@@ -30,6 +30,7 @@ final class EditViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.setNavigationBarHidden(false, animated: false)
         setupNavigation()
         setupView()
         setupTextField()
@@ -40,9 +41,8 @@ final class EditViewController: BaseViewController {
         navigationController?.navigationBar.prefersLargeTitles = false
         navigationItem.largeTitleDisplayMode = .never
         
-        if presenter.edit != nil {
-            navigationItem.rightBarButtonItem = .init(title: "Сохранить", style: .plain, target: self, action: #selector(saveUpdateNote(_:)))
-        }
+        let rightText = (presenter.edit == nil) ? "Сохранить" : "Изменить"
+        navigationItem.rightBarButtonItem = .init(title: rightText, style: .plain, target: self, action: #selector(saveUpdateNote(_:)))
     }
     
     private func setupView() {
@@ -67,9 +67,8 @@ final class EditViewController: BaseViewController {
         
         guard let edit = presenter.edit else { return }
         
-        let titleChange = edit.title
+        labelTextField.text = edit.title
         
-        labelTextField.text = titleChange
         labelTextField.textColor = .custom.white
         mainTextField.textColor = .custom.white
     }
@@ -91,6 +90,7 @@ extension EditViewController: UITextFieldDelegate {
 extension EditViewController: EditPresenterDelegate {
     func popViewController() {
         delegate?.reloadData()
-        navigationController?.popViewController(animated: true)
+        let vc = Assembler.shared.setupMainViewController()
+        navigationController?.pushViewController(vc, animated: true)
     }
 }

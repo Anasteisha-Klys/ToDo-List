@@ -7,7 +7,14 @@
 
 import UIKit
 
+protocol EditNoteDelegate: AnyObject {
+    func didTapEditNote()
+    func didTapShareNote()
+    func didTapDeleteNote()
+}
+
 final class EditNote: UIView {
+    weak var delegate: EditNoteDelegate?
     private let nameNoteLabel = UILabel(text: nil, textColor: .custom.white, font: UIFont(name: SFProFont.medium.font, size: 16), textAlignment: .left, numberOfLines: 0)
     private let miniNoteLabel = UILabel(text: nil, textColor: .custom.white, font: UIFont(name: SFProFont.bold.font, size: 12), textAlignment: .left, numberOfLines: 0)
     private let dateLabel = UILabel(text: nil, textColor: .custom.white, font: UIFont(name: SFProFont.regular.font, size: 12), textAlignment: .left, numberOfLines: 0)
@@ -39,9 +46,9 @@ final class EditNote: UIView {
         baseViewForGeneral.addSubviews(stackViewNote)
         
         let baseView = UIView()
+        baseView.addSubviews(baseViewForGeneral, stackViewForButton)
         addSubviews(baseView)
         baseView.fullConstraint()
-        baseView.addSubviews(baseViewForGeneral, stackViewForButton)
         
         NSLayoutConstraint.activate([
             baseViewForGeneral.topAnchor.constraint(equalTo: baseView.topAnchor),
@@ -69,21 +76,32 @@ final class EditNote: UIView {
 
         deleteButton.setupTextLabel(dateText: "Удалить", font: UIFont.systemFont(ofSize: 16, weight: .regular), textColor: .custom.red)
         deleteButton.setupImageOnButton(image: "trash")
+        
+//        let gestureEdit = UITapGestureRecognizer(target: self, action: #selector(editNoteButton(_:)))
+//        editNoteButton.addGestureRecognizer(gestureEdit)
+//        let gestureShared = UITapGestureRecognizer(target: self, action: #selector(sharedNote(_:)))
+//        sharedButton.addGestureRecognizer(gestureShared)
+//        let gestureDelete = UITapGestureRecognizer(target: self, action: #selector(deleteNote(_:)))
+//        deleteButton.addGestureRecognizer(gestureDelete)
+        
+        editNoteButton.addTarget(self, action: #selector(editNoteButton(_:)))
+        sharedButton.addTarget(self, action: #selector(sharedNote(_:)))
+        deleteButton.addTarget(self, action: #selector(deleteNote(_:)))
     }
     
     func setupNotes(note: Note) {
         nameNoteLabel.text = note.title
     }
     
-    func addTargetEdit(target: Any?, action: Selector) {
-        editNoteButton.addTarget(target, action: action)
+    @objc private func editNoteButton(_ sender: UIButton) {
+        delegate?.didTapEditNote()
     }
     
-    func addTargetShared(target: Any?, action: Selector) {
-        sharedButton.addTarget(target, action: action)
+    @objc private func sharedNote(_ sender: UIButton) {
+        delegate?.didTapShareNote()
     }
     
-    func addTargetDelete(target: Any?, action: Selector) {
-        deleteButton.addTarget(target, action: action)
+    @objc private func deleteNote(_ sender: UIButton) {
+        delegate?.didTapDeleteNote()
     }
 }

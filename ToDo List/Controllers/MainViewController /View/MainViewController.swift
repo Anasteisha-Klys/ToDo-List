@@ -21,11 +21,6 @@ final class MainViewController: BaseViewController {
         return tableView
     }()
     private let footerView = CustomCreateNoteButton()
-//    private let baseViewForEditNote: UIVisualEffectView = {
-//        let blurEffect = UIBlurEffect(style: .systemUltraThinMaterialDark)
-//        let blurEffectView = UIVisualEffectView(effect: blurEffect)
-//        return blurEffectView
-//    }()
     private let baseViewForEditNote = UIView()
     private let editNote = EditNote()
     
@@ -42,9 +37,10 @@ final class MainViewController: BaseViewController {
         super.viewDidLoad()
         setupNavigation()
         setupSearch()
-        setupButton()
         setupView()
         presenter.fetchNotesFromAPI()
+        presenter.updateCD()
+        setupButton()
     }
     
     private func setupNavigation() {
@@ -82,12 +78,7 @@ final class MainViewController: BaseViewController {
         buttonVoice.tintColor = .custom.white.withAlphaComponent(0.5)
         buttonVoice.addTarget(self, action: #selector(findByVoice(_:)), for: .touchDown)
         
-        editNote.addTargetEdit(target: self, action: #selector(editNoteButton(_:)))
-        editNote.addTargetShared(target: self, action: #selector(sharedNote(_:)))
-        editNote.addTargetDelete(target: self, action: #selector(deleteNote(_:)))
-        
-        let countNotes = presenter.notes.count
-        footerView.addTextLabel(text: String(countNotes))
+    
         footerView.addTarget(target: self, action: #selector(addNote(_:)))
     }
     
@@ -98,9 +89,10 @@ final class MainViewController: BaseViewController {
         baseViewForEditNote.addSubviews(editNote)
         footerView.bringSubviewToFront(view)
         
-//        let gesture = UITapGestureRecognizer(target: self, action: #selector(backStartController(_:)))
-//        baseViewForEditNote.addGestureRecognizer(gesture)
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(backStartController(_:)))
+        baseViewForEditNote.addGestureRecognizer(gesture)
         baseViewForEditNote.isHidden = true
+        editNote.delegate = self
         
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
@@ -124,7 +116,18 @@ final class MainViewController: BaseViewController {
     
     private func setupSelectCell(_ row: Int) {
         let notes = presenter.isSearching ? presenter.filteredNotes : presenter.notes
+        presenter.row = row
         editNote.setupNotes(note: notes[row])
+    }
+    
+    private func hiddenView() {
+        baseViewForEditNote.isHidden = true
+        navigationController?.setNavigationBarHidden(false, animated: false)
+    }
+    
+    private func updateFooterView() {
+        let countNotes = presenter.isSearching ? presenter.filteredNotes.count : presenter.notes.count
+        footerView.addTextLabel(text: String(countNotes))
     }
     
     @objc private func findByVoice(_ sender: UIButton) {
@@ -135,34 +138,19 @@ final class MainViewController: BaseViewController {
         presenter.addAndEditNote()
     }
     
-//    @objc private func backStartController(_ gesture: UIGestureRecognizer) {
-//        baseViewForEditNote.isHidden = true
-//        navigationController?.setNavigationBarHidden(false, animated: false)
-//    }
+    @objc private func backStartController(_ gesture: UIGestureRecognizer) {
+        let location = gesture.location(in: baseViewForEditNote)
+        if editNote.frame.contains(location) {
+            return 
+        }
+        hiddenView()
+    }
     
     @objc private func startEditingNote(_ gesture: UILongPressGestureRecognizer) {
         guard let tag = gesture.view?.tag else { return }
         setupSelectCell(tag)
         navigationController?.setNavigationBarHidden(true, animated: false)
         baseViewForEditNote.isHidden = false
-    }
-    
-    @objc private func editNoteButton(_ sender: Any) {
-        guard let indexPath = tableView.indexPathForSelectedRow else { return }
-        let note = presenter.notes[indexPath.row]
-        presenter.editingNote(edit: note)
-        print("touch")
-    }
-
-    @objc private func sharedNote(_ sender: Any) {}
-    
-    @objc private func deleteNote(_ sender: Any) {
-        guard let indexPath = tableView.indexPathForSelectedRow else { return }
-        let note = presenter.notes[indexPath.row]
-        presenter.deleteNote(note: note)
-        tableView.performBatchUpdates {
-            tableView.deleteRows(at: [IndexPath(row: indexPath.row, section: 0)], with: .automatic)
-        }
     }
 }
 
@@ -190,6 +178,10 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
 }
 
 extension MainViewController: UISearchControllerDelegate, UISearchBarDelegate {
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        buttonVoice.isHidden = true
+    }
+    
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         guard !searchText.isEmpty else {
             presenter.isSearching = false 
@@ -209,6 +201,34 @@ extension MainViewController: UISearchControllerDelegate, UISearchBarDelegate {
     }
 }
 
+extension MainViewController: EditNoteDelegate {
+    func didTapEditNote() {
+        let row = presenter.row
+        let note = presenter.notes[row]
+        presenter.editingNote(edit: note)
+    }
+    
+    func didTapShareNote() {
+        
+    }
+    
+    func didTapDeleteNote() {
+        let row = presenter.row
+        let note = presenter.notes[row]
+        DispatchQueue.main.async {
+            self.presenter.deleteNote(note: note)
+            self.presenter.notes.remove(at: row)
+            self.tableView.performBatchUpdates {
+                self.tableView.deleteRows(at: [IndexPath(row: row, section: 0)], with: .automatic)
+                self.presenter.updateCD()
+            } completion: { _ in
+                self.presenter.reloadTable()
+                self.hiddenView()
+            }
+        }
+    }
+}
+
 extension MainViewController: MainPresenterDelegate, EditViewControllerDelegate {
     func updateVC() {
         tableView.reloadData()
@@ -221,5 +241,6 @@ extension MainViewController: MainPresenterDelegate, EditViewControllerDelegate 
     
     func reloadData() {
         presenter.updateCD()
+        presenter.reloadTable()
     }
 }

@@ -82,15 +82,44 @@ class StorageManager {
         var notes: [Note] = []
         do {
             notes = try context.fetch(fetchRequest)
-            if notes.isEmpty {
-                return []
+            return notes
+        } catch {
+            print("Error fetching notes: \(error)")
+        }
+        return notes
+    }
+    
+    func saveNotes(todos: [Todo]) {
+        let context = getContext()
+        
+        for todo in todos {
+            let note = Note(context: context)
+            note.id = Int64(todo.id ?? 0)
+            note.title = todo.todo
+            note.completed = todo.completed ?? false
+        }
+        
+        saveContext()
+    }
+    
+    func loadNotes(completion: @escaping ([Todo]?) -> Void) {
+        let context = getContext()
+        let fetchRequest: NSFetchRequest<Note> = Note.fetchRequest()
+        
+        do {
+            let noteEntities = try context.fetch(fetchRequest)
+            if noteEntities.isEmpty {
+                completion(nil)
             } else {
-                return notes
+                let todos = noteEntities.map { note in
+                    Todo(id: Int(note.id), todo: note.title, completed: note.completed)
+                }
+                completion(todos)
             }
         } catch {
-            print("Error fetching tasks: \(error)")
+            print("Failed to fetch notes: \(error)")
+            completion(nil)
         }
-        return notes 
     }
 }
 

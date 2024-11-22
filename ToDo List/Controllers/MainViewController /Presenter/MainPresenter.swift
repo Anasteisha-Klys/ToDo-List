@@ -18,16 +18,26 @@ final class MainPresenter {
     var notes: [Note] = []
     var filteredNotes: [Note] = []
     var isSearching: Bool = false
+    var row: Int = 0
     
     func loadNotes() {
-        let checkNotes = StorageManager.shared.accessData()
-        
-        if checkNotes.isEmpty {
-            fetchNotesFromAPI()
-        } else {
-            notes = StorageManager.shared.get()
-            print(notes)
-            reloadTable()
+        DispatchQueue.global(qos: .background).async {
+            StorageManager.shared.loadNotes { [weak self] todos in
+                guard let self = self else { return }
+                
+                if let todos = todos {
+                    self.notes = todos.map { todo in
+                        let note = Note(context: StorageManager.shared.getContext())
+                        note.id = Int64(todo.id ?? 0)
+                        note.title = todo.todo
+                        note.completed = todo.completed ?? false 
+                        return note
+                    }
+                    self.reloadTable()
+                } else {
+                    self.fetchNotesFromAPI()
+                }
+            }
         }
     }
     
@@ -44,36 +54,39 @@ final class MainPresenter {
     }
     
     private func saveNotesToCoreData(todosData: TodosData) {
-        guard let todos = todosData.todos else {
-            print("No todos available")
-            return
+        DispatchQueue.global(qos: .background).async {
+            guard let todos = todosData.todos else {
+                print("No todos available")
+                return
+            }
+            
+            StorageManager.shared.saveNotes(todos: todos)
+            
+            DispatchQueue.main.async {
+                self.loadNotes() 
+            }
         }
-        
-        let context = StorageManager.shared.getContext()
-        
-        for todo in todos {
-            let note = Note(context: context)
-            note.id = Int64(todo.id ?? 0)
-            note.title = todo.todo
-            note.completed = todo.completed ?? false 
-        }
-        
-        StorageManager.shared.saveContext()
-    
-        loadNotes()
     }
     
     func updateCD() {
-        notes = StorageManager.shared.get()
-        delegate?.updateVC()
+        DispatchQueue.global(qos: .background).async {
+            self.notes = StorageManager.shared.get()
+            DispatchQueue.main.async {
+                self.delegate?.updateVC()
+            }
+        }
     }
     
     func reloadTable() {
-        delegate?.updateVC()
+        DispatchQueue.main.async {
+            self.delegate?.updateVC()
+        }
     }
     
     func addAndEditNote() {
-        delegate?.pushEditViewController(edit: nil)
+        DispatchQueue.main.async {
+            self.delegate?.pushEditViewController(edit: nil)
+        }
     }
     
     func filterNotesForSearch(text: String) {
@@ -89,14 +102,20 @@ final class MainPresenter {
     }
     
     func didSelectEditCell(note: Note) {
-        delegate?.pushEditViewController(edit: note)
+        DispatchQueue.main.async {
+            self.delegate?.pushEditViewController(edit: note)
+        }
     }
     
     func editingNote(edit: Note) {
-        delegate?.pushEditViewController(edit: edit)
+        DispatchQueue.main.async {
+            self.delegate?.pushEditViewController(edit: edit)
+        }
     }
     
     func deleteNote(note: Note) {
-        StorageManager.shared.delete(note)
+        DispatchQueue.global(qos: .background).async {
+            StorageManager.shared.delete(note)
+        }
     }
 }

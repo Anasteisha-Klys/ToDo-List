@@ -13,11 +13,7 @@ class Note: NSManagedObject {
     @NSManaged var id: Int64
     @NSManaged var title: String?
     @NSManaged var completed: Bool
-    
-    convenience init(title: String?) {
-        self.init()
-        self.title = title
-    }
+
 }
 
 extension Note {
